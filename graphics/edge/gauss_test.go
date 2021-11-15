@@ -13,7 +13,7 @@ import (
 	"os"
 	"testing"
 
-	_ "image/png"
+	"image/png"
 )
 
 func sprintBox(box []byte, width, height int) string {
@@ -44,6 +44,15 @@ func loadImage(path string) (img image.Image, err error) {
 	}
 	defer file.Close()
 	img, _, err = image.Decode(file)
+	return
+}
+
+func writeImage(img image.Image, path string) (err error) {
+	out, err := os.Create(path)
+	if err!=nil { return }
+	defer out.Close()
+
+	err = png.Encode(out, img)
 	return
 }
 

@@ -19,7 +19,7 @@ func TestCannyGopher(t *testing.T) {
 
 	dst := image.NewGray(src.Bounds())
 	if err := Canny(dst, src); err != nil {
-		t.Fatalf("%d: %v", err)
+		t.Fatalf("../../testdata/gopher.png: %v", err)
 	}
 
 	cmp, err := loadImage("../../testdata/gopher-canny.png")
